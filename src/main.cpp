@@ -30,3 +30,24 @@ static const uint8_t LED_PIN = 13;
  *
  * @note No parameters or return value (Arduino API).
  */
+void setup(){
+    pinMode(LED_PIN,OUTPUT);
+    Serial.begin(9600); //PC Serial Monitor
+    Serial1.begin(9600); // HC -05 AT Mode
+}
+
+/**
+ * @brief Main loop: forward incoming Bluetooth characters and control LED.
+ *
+ * Continuously checks for incoming data on Serial1 (HC-05). When a byte is
+ * available it is read and printed to the PC Serial Monitor. If the
+ * character is '1' the LED is turned on; if '0' the LED is turned off.
+ *
+ * Behavior summary:
+ * - Received characters are forwarded to Serial (printed with newline).
+ * - '1' -> LED HIGH, '0' -> LED LOW.
+ * - Other characters are ignored for LED control but still forwarded.
+ *
+ * @note This uses non-blocking Serial1.available() so the loop stays
+ * responsive.
+ */
