@@ -51,3 +51,12 @@ void setup(){
  * @note This uses non-blocking Serial1.available() so the loop stays
  * responsive.
  */
+void loop() {
+    //PC TO BLUETOOTH
+    if (Serial1.available()) {
+        char data =Serial1.read();
+        Serial.println(data);
+
+        if (data=='1')digitalWrite(LED_PIN,HIGH);
+        if (data=='0')digitalWrite(LED_PIN,LOW);
+    }
